@@ -5,8 +5,6 @@ const router = express.Router()
 
 router.get('/', usersController.getAllUsers)
 
-router.get('/', usersController.getAllUsers)
-
 router.post('/', usersController.createUser)
 
 router.put('/:id', usersController.updateUserById)
