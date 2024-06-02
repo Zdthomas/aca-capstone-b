@@ -13,7 +13,31 @@ const getAllUsers = (req, res) => {
 
   const getUserById = (req, res) => {
     // SELECT USERS WHERE ID = <REQ PARAMS ID>
-    let sql = "SELECT * FROM users WHERE ID = ?"
+    let sql = `
+    SELECT 
+      users.id,
+      users.first_name,
+      users.last_name,
+      usersContact.phone,
+      usersContact.email,
+      characterCreation.charactername,
+      characterCreation.userlevel,
+      characterCreation.userhealth,
+      characterCreation.strength,
+      characterCreation.intelligence,
+      characterCreation.will,
+      characterCreation.dexterity,
+      characterCreation.constitution,
+      characterCreation.charisma
+    FROM 
+      users
+    LEFT JOIN 
+      usersContact ON users.id = usersContact.id
+    LEFT JOIN 
+      characterCreation ON users.id = characterCreation.id
+    WHERE 
+      users.id = ?
+  `
     // WHAT GOES IN THE BRACKETS
     sql = mysql.format(sql, [req.params.id])
   
