@@ -3,6 +3,8 @@ const { expressjwt: jwt } = require("express-jwt");
 
 const logger = () => {}
 
+
+
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,

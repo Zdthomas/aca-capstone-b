@@ -45,6 +45,7 @@ const login = (req, res) => {
   })
   .then(response => {
     const { access_token } = response.data
+    console.log(response)
     res.json({
       access_token
     })

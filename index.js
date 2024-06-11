@@ -6,6 +6,8 @@ const cors = require('cors')
 const usersRouter = require('./routers/users');
 const authRouter = require('./routers/auth');
 
+const { checkJwt } = require('./middleware');
+
 const app = express();
 const port = process.env.PORT || 4001;
 
@@ -17,8 +19,11 @@ app.use(cors())
 app.use(express.json())
 // app.use(bodyParser.json())
 
-app.use('/users', usersRouter)
-app.use('/auth', authRouter)
+app.use('/users', checkJwt, usersRouter);
+app.use('/auth', checkJwt, authRouter);
+
+// app.use('/users', usersRouter)
+// app.use('/auth', authRouter)
 
 app.get('/', (req, res) => {
     res.send('Welcome to our server!')
