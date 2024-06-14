@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const usersRouter = require('./routers/users');
 const authRouter = require('./routers/auth');
+const charactersRouter = require('./routers/characters'); 
 
 const { checkJwt } = require('./middleware');
 
@@ -14,13 +15,17 @@ const port = process.env.PORT || 4001;
 
 app.use(cors())
 
-
+app.get('/test-auth', checkJwt, (req, res) => {
+  console.log('Decoded JWT:', req.user);
+  res.json({ message: 'Authenticated', user: req.user });
+});
 
 app.use(express.json())
-// app.use(bodyParser.json())
 
-app.use('/users', checkJwt, usersRouter);
-app.use('/auth', checkJwt, authRouter);
+
+app.use('/users', checkJwt,  usersRouter);
+app.use('/characters', checkJwt, charactersRouter);
+// app.use('/auth', checkJwt, authRouter);
 
 // app.use('/users', usersRouter)
 // app.use('/auth', authRouter)
