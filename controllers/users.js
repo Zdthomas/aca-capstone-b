@@ -52,7 +52,7 @@ const getAllUsers = (req, res) => {
   }
 
   const getUserCharactersByEmail = (req, res) => {
-    console.log('Decoded JWT:', req.user); // Check if this logs the decoded JWT
+    console.log('Decoded JWT:', req.user); 
     const email = req.user['https://aca-capstone-b.vercel.app/email'];
   
     if (!email) {

@@ -9,7 +9,7 @@ const { handleSQLError } = require('../sql/error')
 const login = (req, res) => {
   const { username, password } = req.body;
 
-  // Use Auth0 to get the access token
+  
   axios(`https://${process.env.AUTH0_DOMAIN}/oauth/token`, {
     method: 'POST',
     headers: {
@@ -19,7 +19,7 @@ const login = (req, res) => {
       grant_type: 'password',
       username: username,
       password: password,
-      audience: process.env.AUTH0_AUDIENCE,  // Ensure this matches your .env value
+      audience: process.env.AUTH0_AUDIENCE,  
       client_id: process.env.AUTH0_CLIENT_ID,
       client_secret: process.env.AUTH0_CLIENT_SECRET
     }
